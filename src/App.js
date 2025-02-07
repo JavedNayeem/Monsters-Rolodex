@@ -8,7 +8,8 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters:[]
+      searchKey: '',
+      monsters:[],
     };
   }
 
@@ -20,11 +21,24 @@ class App extends Component {
     }));
   }
 
+
+  searchMonster = () => {
+    console.log('searchMonster Function Hit');
+  }
+
   render() {
 
     return (
       <div className="App">
-        
+
+        <input className='search-box' type='search' placeholder='Search Monsters' onChange={(event) => {
+          
+          this.setState({
+            searchKey: event.target.value
+          });
+          console.log(this.state.searchKey);
+        }}/>
+
         {this.state.monsters.map((monster) => {
           return <div key={monster.id}><h1>{monster.name}</h1></div>
         })}
